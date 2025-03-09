@@ -1,0 +1,8 @@
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.1.1
+  - package: dbt-labs/codegen
+    version: 0.12.1
+  - package: fivetran/fivetran_utils
+    version: 0.4.10
+sha1_hash: efa7494c3d4b29f805b42eba467530ebd71593b1
