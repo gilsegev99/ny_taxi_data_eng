@@ -8,6 +8,7 @@ sources:
     tables:
       - name: green_tripdata_19_20_ext
       - name: yellow_tripdata_19_20_ext
+      - name: fhv_tripdata_19_ext
          # freshness:
            # error_after: {count: 6, period: hour}
 
@@ -194,3 +195,30 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
+
+    - name: stg_fhv_tripdata
+      description: > 
+        Trips made by for-hire vehicles in New York
+      columns:
+          - name: dispatching_base_num
+          - name: pickup_datetime 
+            description: The date and time when the meter was engaged.
+          - name: dropoff_datetime 
+            description: The date and time when the meter was disengaged.
+          - name: pickup_locationid
+            description: locationid where the meter was engaged.
+            tests:
+              - relationships:
+                  to: ref('taxi_zone_lookup')
+                  field: locationid
+                  severity: warn
+          - name: dropoff_locationid 
+            description: locationid where the meter was engaged.
+            tests:
+              - relationships:
+                  to: ref('taxi_zone_lookup')
+                  field: locationid
+                  severity: warn
+          - name: sr_flag 
+          - name: affiliated_base_number
+          
